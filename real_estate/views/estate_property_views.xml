@@ -22,6 +22,55 @@
       </search>
     </field>
   </record>
+  <record id="estate_property_view_kanban" model="ir.ui.view">
+    <field name="name">estate.property.view.kanban</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+      <kanban>
+        <field name="state" />
+        <templates>
+          <t t-name="card">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="fs-2 font-bold">
+                  <field name="name" />
+                </div>
+                <div>Type:
+                  <field name="property_type_id" />
+                </div>
+                <div>espected price:
+                  $
+                  <field name="expected_price" />
+                </div>
+                <div t-if="record.state.raw_value == 'offer received'">best price:
+                  $
+                  <field name="best_offer" />
+                </div>
+                <div t-if="record.state.raw_value == 'offer accepted'">sell price:
+                  $
+                  <field name="sell_price" />
+                </div>
+              </div>
+              <div class="mt-2">
+                <t t-if="record.state.raw_value == 'new'">
+                  <span class="bg-success text-white p-2">new</span>
+                </t>
+                <t t-if="record.state.raw_value == 'offer accepted'">
+                  <span class="bg-info text-white p-2">accepted</span>
+                </t>
+                <t t-elif="record.state.raw_value == 'sold'">
+                  <span class="bg-danger text-white p-2">sold</span>
+                </t>
+                <t t-elif="record.state.raw_value == 'cancelled'">
+                  <span class="bg-warning text-white p-2">cancelled</span>
+                </t>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
   <record id="estate_property_view_tree" model="ir.ui.view">
     <field name="name">estate.property.view</field>
     <field name="model">estate.property</field>
@@ -46,7 +95,7 @@
         <header>
           <button name="action_sold" type="object" string="Sold" class="btn btn-primary" invisible="state == 'cancelled' or state == 'sold'"/>
           <button name="action_cancel" type="object" string="Cancel" invisible="state == 'sold' or state == 'cancelled'"/>
-          <button type="action" name="%(estate_property_type_action)d" string="Type property"/>
+          <button type="action" name="%(estate_property_type_action)d" string="Type of property"/>
           <field name="state" widget="statusbar" statusbar_visible="new,offer received,offer accepted,sold"/>
         </header>
         <sheet>
@@ -114,7 +163,7 @@
   <record id="estate_property_action" model="ir.actions.act_window">
     <field name="name">Properties</field>
     <field name="res_model">estate.property</field>
-    <field name="view_mode">list,form</field>
+    <field name="view_mode">kanban,list,form</field>
     <field name="domain">[]</field>
     <field name="context">{'search_default_available': 1}</field>
     <field name="help" type="html">
