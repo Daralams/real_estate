@@ -73,8 +73,6 @@ class EstateProperty(models.Model):
         if self.sell_price < min_sell_price: 
             raise ValidationError("The selling price must be at least 90% of the expected price! You must reduce the expected price if you want to accept this offer.")
 
-
-
     @api.onchange('garden')
     def _onchange_garden(self):
         if self.garden:
@@ -84,9 +82,13 @@ class EstateProperty(models.Model):
             self.garden_area = 0
             self.garden_orientation = ""
 
-            
 
     @api.depends('total_area')
     def _total_area(self):
         self.total_area = self.living_area + self.garden_area
+
+
+    def unlink(self):
+        if self.state == 'sold' or self.state == 'cancelled':
+            raise ValidationError("Sold or Cancelled property cannot be delete!")
             

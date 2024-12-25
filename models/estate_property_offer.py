@@ -8,6 +8,7 @@ class EstatePropertyOffer(models.Model):
     _order = "price desc"
 
     property_id = fields.Many2one('estate.property', ondelete="cascade")
+    property_type_id = fields.Many2one('estate.property.type', string="Type", ondelete="cascade", help="Type of the property")
     price = fields.Float(string="Price")
     partner_id = fields.Many2one('res.partner', string="Partner")
     validity = fields.Integer(string="Validity (days)", default=7, required=True)
@@ -36,7 +37,6 @@ class EstatePropertyOffer(models.Model):
     def _inverse_date_deadline(self):
         for record in self:
             record.date_deadline = record.date_deadline
-
 
     def accept_offer(self):
         for record in self:

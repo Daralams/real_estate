@@ -5,7 +5,7 @@
     <field name="model">estate.property</field>
     <field name="arch" type="xml">
       <search string="Filter property by archived, inactive, status property and best offer">
-        <field name="name" string="Name of Property"/>
+        <field name="name" string="Name of Property" filter_domain="[('name', 'ilike', self)]"/>
         <field name="property_type_id" string="Type of Property"/>
         <field name="country_id"/>
         <field name="postcode" />
@@ -13,8 +13,7 @@
         <separator/>
         <filter name="Archived" string="Inactive" domain="[('active', '=', False)]" />
         <separator/>
-        <filter name="new_property" string="New Property" domain="[('state', '=', 'new')]" />
-        <filter name="offer_received_property" string="Offer Received Property" domain="[('state', '=', 'offer received')]" />
+        <filter name="available" string="Available" domain="['|', ('state', '=', 'new'), ('state', '=', 'offer received')]" context="{'search_default_available': 1}"/>
         <filter name="offer_accepted_property" string="Offer Accepted Property" domain="[('state', '=', 'offer accepted')]" />
         <filter name="sold_property" string="Sold Property" domain="[('state', '=', 'sold')]" />
         <filter name="cancelled_property" string="Cancelled Property" domain="[('state', '=', 'cancelled')]" />
@@ -45,8 +44,8 @@
     <field name="arch" type="xml">
       <form string="Properties">
         <header>
-          <button name="action_sold" type="object" string="Sold" invisible="state == 'cancelled'"/>
-          <button name="action_cancel" type="object" string="Cancel" invisible="state == 'sold'"/>
+          <button name="action_sold" type="object" string="Sold" invisible="state == 'cancelled' or state == 'sold'"/>
+          <button name="action_cancel" type="object" string="Cancel" invisible="state == 'sold' or state == 'cancelled'"/>
           <button type="action" name="%(estate_property_type_action)d" string="Type property"/>
           <field name="state" widget="statusbar" statusbar_visible="new,offer received,offer accepted,sold"/>
         </header>
@@ -88,7 +87,7 @@
             </page>
             <page name="offers" string="Offers">
               <group>
-                <field name="offer_ids" mode="list,kanban" nolabel="1" colspan="2">
+                <field name="offer_ids" mode="list,kanban" nolabel="1" colspan="2" readonly="state in ('offer accepted', 'sold', 'cancelled')">
                   <list string="Offers" editable="bottom" decoration-success="status == 'accepted'"  decoration-danger="status == 'refused'">
                     <field name="price" />
                     <field name="partner_id" widget="many2one_avatar_user"/>
@@ -117,7 +116,7 @@
     <field name="res_model">estate.property</field>
     <field name="view_mode">list,form</field>
     <field name="domain">[]</field>
-    <field name="context">{}</field>
+    <field name="context">{'search_default_available': 1}</field>
     <field name="help" type="html">
       <p class="o_view_nocontent_smiling_face">Manage properties here</p>
     </field>
