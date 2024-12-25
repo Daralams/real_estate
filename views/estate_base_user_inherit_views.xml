@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="estate_property_type_view_form_inherit" model="ir.ui.view">
+        <field name="name">estate.property.type.view.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='account_security']" position="after">
+                <page name="real_estate_property" string="Real Estate Property">
+                    <group>
+                        <field name="property_ids" mode="list,kanban" nolabel="1" colspan="2">
+                            <list string="real_estate_property" readonly="1">
+                                <field name="salesman" widget="many2one_avatar_user"/>
+                                <field name="name" />
+                                <field name="property_type_id" />
+                                <field name="bedrooms" />
+                                <field name="expected_price"/>
+                                <field name="best_offer" />
+                                <field name="sell_price"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
