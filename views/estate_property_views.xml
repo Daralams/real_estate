@@ -44,7 +44,7 @@
     <field name="arch" type="xml">
       <form string="Properties">
         <header>
-          <button name="action_sold" type="object" string="Sold" invisible="state == 'cancelled' or state == 'sold'"/>
+          <button name="action_sold" type="object" string="Sold" class="btn btn-primary" invisible="state == 'cancelled' or state == 'sold'"/>
           <button name="action_cancel" type="object" string="Cancel" invisible="state == 'sold' or state == 'cancelled'"/>
           <button type="action" name="%(estate_property_type_action)d" string="Type property"/>
           <field name="state" widget="statusbar" statusbar_visible="new,offer received,offer accepted,sold"/>

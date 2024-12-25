@@ -38,7 +38,7 @@ class EstateProperty(models.Model):
         ('west', 'West')
     ], string="Garden Orientation")
     total_area = fields.Integer(string="Total area", compute="_total_area")
-    salesman = fields.Many2one('res.users', string="Salesman")
+    salesman = fields.Many2one('res.users', string="Salesman", default=lambda self: self.env.user)
     buyer = fields.Many2one('res.partner', string="Buyer")
     offer_ids = fields.One2many('estate.property.offer', 'property_id')
 
