@@ -55,7 +55,10 @@
                 <t t-if="record.state.raw_value == 'new'">
                   <span class="bg-success text-white p-2">new</span>
                 </t>
-                <t t-if="record.state.raw_value == 'offer accepted'">
+                <t t-elif="record.state.raw_value == 'offer received'">
+                  <span class="bg-success text-white p-2">new</span>
+                </t>
+                <t t-elif="record.state.raw_value == 'offer accepted'">
                   <span class="bg-info text-white p-2">accepted</span>
                 </t>
                 <t t-elif="record.state.raw_value == 'sold'">

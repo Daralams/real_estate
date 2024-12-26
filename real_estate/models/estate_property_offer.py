@@ -38,6 +38,14 @@ class EstatePropertyOffer(models.Model):
         for record in self:
             record.date_deadline = record.date_deadline
 
+    # override
+    @api.model
+    def create(self, vals):
+        record = super(EstatePropertyOffer, self).create(vals)
+        if record.property_id:
+            record.property_id.state = 'offer received'
+        return record
+
     def accept_offer(self):
         for record in self:
             record.status = "accepted"

@@ -4,6 +4,7 @@ class EstatePropertyInherit(models.Model):
     _inherit = 'estate.property'
     _description = 'Estate property inherit'
 
+    # override
     def action_sold(self):
         administrative_fees = 100.00
         self.env["account.move"].create(
