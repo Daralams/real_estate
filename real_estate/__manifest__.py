@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Real Estate",
-    'summary': "Technical exercise with case study",
+    'summary': "The Real Estate Advertisement module",
     'description': """
-Technical exercise with case study
+The Real Estate Advertisement module
     """,
     'author': "Mangandaralam Sakti",
-    'website': "https://www.yourcompany.com",
+    'website': "https://github.com/Daralams/real_estate",
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
@@ -22,6 +22,11 @@ Technical exercise with case study
         'views/estate_property_tag_views.xml',
         'views/estate_property_offer_views.xml',
         'views/estate_base_user_inherit_views.xml',
+        # =============== sakti labs
+        'views/labs/my_transient_model_view.xml',
+        # =============== sakti labs
+        'report/estate_property_templates.xml',
+        'report/estate_property_reports.xml',
         'views/estate_menu_views.xml',
         'views/templates.xml',
     ],

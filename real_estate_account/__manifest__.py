@@ -6,7 +6,7 @@
 link module between real estate and invoicing
     """,
     'author': "Mangandaralam Sakti",
-    'website': "https://www.yourcompany.com",
+    'website': "https://github.com/Daralams/real_estate",
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="my_transient_model_view_tree" model="ir.ui.view">
+        <field name="name">my.transient.model.view</field>
+        <field name="model">my.transient.model</field>
+        <field name="arch" type="xml">
+            <list string="My Transient Model" editable="bottom">
+                <field name="name"/>
+                <field name="date"/>
+            </list>
+        </field>
+    </record>
+    <record id="my_transient_model_action" model="ir.actions.act_window">
+        <field name="name">Labs / Transient Model</field>
+        <field name="res_model">my.transient.model</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">This data is temporary, stored in the database but automatically vacuumed every so often</p>
+        </field>
+    </record>
+</odoo>

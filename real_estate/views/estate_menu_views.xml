@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="real_estate_root_menu" name="Real Estate"/>
-    <menuitem id="advertisements_nav_menu" name="Advertisements" parent="real_estate_root_menu"/>
-    <menuitem id="properties_sub_menu" name="Properties" parent="advertisements_nav_menu" action="estate_property_action"/>
-    <menuitem id="setting_nav_menu" name="Setting" parent="real_estate_root_menu"/>
-    <menuitem id="property_type_sub_menu" name="Property Type" action="estate_property_type_action" parent="setting_nav_menu"/>
-    <menuitem id="property_tag_sub_menu" name="Property Tag" action="estate_property_tag_action" parent="setting_nav_menu"/>
+    <menuitem 
+        id="real_estate_root_menu" 
+        name="Real Estate" 
+        sequence="5"/>
+    <menuitem 
+        id="advertisements_nav_menu" 
+        name="Advertisements" 
+        parent="real_estate_root_menu"/>
+    <menuitem 
+        id="properties_sub_menu" 
+        name="Properties" 
+        parent="advertisements_nav_menu" 
+        action="estate_property_action" />
+    <!-- ======================= sakti labs =======================-->
+    <menuitem 
+        id="labs_nav_menu" 
+        name="Labs" 
+        parent="real_estate_root_menu"/>
+    <menuitem 
+        id="model_sub_menu" 
+        name="Model" 
+        parent="labs_nav_menu"/>
+    <menuitem
+        id="model_transient_sub_menu"
+        name="Transient"
+        action="my_transient_model_action"
+        parent="model_sub_menu"/>
+    <!-- ======================= sakti labs =======================-->
+    <menuitem 
+        id="setting_nav_menu" 
+        name="Setting" 
+        parent="real_estate_root_menu"/>
+    <menuitem 
+        id="property_type_sub_menu" 
+        name="Property Type" 
+        action="estate_property_type_action" 
+        parent="setting_nav_menu"/>
+    <menuitem 
+        id="property_tag_sub_menu" 
+        name="Property Tag" 
+        action="estate_property_tag_action" 
+        parent="setting_nav_menu"/>
 </odoo>
