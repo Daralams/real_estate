@@ -4,6 +4,7 @@ from datetime import date, timedelta
 
 class EstateProperty(models.Model):
     _name = 'estate.property'
+    _inherit = ['mail.thread']
     _description = 'Estate Property'
     _order = "id desc"
 
@@ -22,7 +23,7 @@ class EstateProperty(models.Model):
         ("offer accepted", "Offer Accepted"),
         ("sold", "Sold"),
         ("cancelled", "Cancelled"),
-    ], string="Status", required=True, default="new")
+    ], string="Status", required=True, default="new", tracking=True)
     active = fields.Boolean(string="Active", help="This record is active or inactive")
     description = fields.Text(string="Description")
     bedrooms = fields.Integer(string="Bedrooms", default=2)

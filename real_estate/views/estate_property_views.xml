@@ -22,6 +22,7 @@
       </search>
     </field>
   </record>
+  <!-- view kanban -->
   <record id="estate_property_view_kanban" model="ir.ui.view">
     <field name="name">estate.property.view.kanban</field>
     <field name="model">estate.property</field>
@@ -74,6 +75,7 @@
       </kanban>
     </field>
   </record>
+  <!-- view list -->
   <record id="estate_property_view_tree" model="ir.ui.view">
     <field name="name">estate.property.view</field>
     <field name="model">estate.property</field>
@@ -90,6 +92,30 @@
       </list>
     </field>
   </record>
+  <!-- view calendar -->
+  <record id="estate_property_view_calendar" model="ir.ui.view">
+    <field name="name">estate.property.view.calendar</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+      <calendar string="Properties" date_start="available_date" color="state">
+        <field name="state" />
+        <field name="property_type_id" />
+        <field name="total_area" />
+        <field name="salesman" />
+      </calendar>
+    </field>
+  </record>
+  <!-- view graph -->
+  <record id="estate_property_view_graph" model="ir.ui.view">
+    <field name="name">estate_property.view.graph</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+      <graph string="Properties" type="bar">
+        <field name="salesman" />
+      </graph>
+    </field>
+  </record>
+  <!-- view form -->
   <record id="estate_property_view_form" model="ir.ui.view">
     <field name="name">estate.property.view</field>
     <field name="model">estate.property</field>
@@ -164,13 +190,14 @@
             </page>
           </notebook>
         </sheet>
+        <chatter/>
       </form>
     </field>
   </record>
   <record id="estate_property_action" model="ir.actions.act_window">
     <field name="name">Properties</field>
     <field name="res_model">estate.property</field>
-    <field name="view_mode">kanban,list,form</field>
+    <field name="view_mode">kanban,list,graph,calendar,form</field>
     <field name="domain">[]</field>
     <field name="context">{'search_default_available': 1}</field>
     <field name="help" type="html">
