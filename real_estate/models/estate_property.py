@@ -48,6 +48,14 @@ class EstateProperty(models.Model):
         ('expected_price', 'CHECK(expected_price > 0)', 'Expected price should be strictly positive!'),
     ]
 
+    def get_estate_property_excel_report(self):
+        # redirect ke controller route: /download/estate-property-report-excel/
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/download/estate-property-report-excel/%s' % (self.id),
+            'target': 'new'
+        }
+
     def action_sold(self):
         self.state = "sold"
 

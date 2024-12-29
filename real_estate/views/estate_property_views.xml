@@ -51,22 +51,26 @@
                   $
                   <field name="sell_price" />
                 </div>
+                <div t-if="record.state.raw_value == 'sold'">sell price:
+                  $
+                  <field name="sell_price" />
+                </div>
               </div>
-              <div class="mt-2">
+              <div>
                 <t t-if="record.state.raw_value == 'new'">
-                  <span class="bg-success text-white p-2">new</span>
+                  <widget name="web_ribbon" title="new" bg_color="text-bg-success" />
                 </t>
                 <t t-elif="record.state.raw_value == 'offer received'">
-                  <span class="bg-success text-white p-2">new</span>
+                  <widget name="web_ribbon" title="new" bg_color="text-bg-success" />
                 </t>
                 <t t-elif="record.state.raw_value == 'offer accepted'">
-                  <span class="bg-info text-white p-2">accepted</span>
+                  <widget name="web_ribbon" title="accepted" bg_color="text-bg-info" />
                 </t>
                 <t t-elif="record.state.raw_value == 'sold'">
-                  <span class="bg-danger text-white p-2">sold</span>
+                  <widget name="web_ribbon" title="sold" bg_color="text-bg-danger" />
                 </t>
                 <t t-elif="record.state.raw_value == 'cancelled'">
-                  <span class="bg-warning text-white p-2">cancelled</span>
+                  <widget name="web_ribbon" title="cancelled" bg_color="text-bg-warning" />
                 </t>
               </div>
             </div>
@@ -84,7 +88,7 @@
         <field name="name" />
         <field name="property_type_id" />
         <field name="postcode" />
-        <field name="tags" widget="many2many_tags"/>
+        <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
         <field name="bedrooms" />
         <field name="living_area" />
         <field name="expected_price" />
@@ -122,6 +126,7 @@
     <field name="arch" type="xml">
       <form string="Properties">
         <header>
+          <button name="get_estate_property_excel_report" type="object" string="Print Excel" class="btn btn-primary"/>
           <button name="action_sold" type="object" string="Sold" class="btn btn-primary" invisible="state == 'cancelled' or state == 'sold'"/>
           <button name="action_cancel" type="object" string="Cancel" invisible="state == 'sold' or state == 'cancelled'"/>
           <button type="action" name="%(estate_property_type_action)d" string="Type of property"/>
@@ -136,7 +141,7 @@
           </div>
           <group>
             <group string="Information">
-              <field name="tags" widget="many2many_tags"/>
+              <field name="tags" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
               <field name="property_type_id" />
               <field name="country_id" />
               <field name="postcode" />
