@@ -4,7 +4,7 @@ import io
 import xlsxwriter
 
 class EstatePropertyReportExcel(http.Controller):
-    @http.route(['/download/estate-property-report-excel/<model("estate.property"):data>'],type='http', auth="user")
+    @http.route(['/download/estate-property-report-excel/<model("estate.property"):data>'],type='http', auth="user", csrf=True)
     def get_estate_property_report_excel(self, data=None, **args):
         response = request.make_response(
             None,
