@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="estate_property_web_create" name="Form create Property">
+        <t t-call="website.layout">
+            <div class="container m-4">
+                <div class="row">
+                    <h2>Form Create Property Type</h2>
+                    <div class="col-12">
+                        <form action="/process-create" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Type</label>
+                                        <input type="text" name="name" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="estate_property_web_response" name="Create Response">
+        <t t-call="website.layout">
+            <div class="container m-4">
+                <div class="row">
+                    <h2>Response</h2>
+                    <div class="col-12">
+                        <p>
+                            <span t-esc="messege"/>
+                        </p>
+                        <a href="/estate-property/advertiments/create" class="btn btn-primary">Back</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
