@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <list string="My Transient Model" editable="bottom">
                 <field name="name"/>
+                <field name="type"/>
                 <field name="date"/>
             </list>
         </field>

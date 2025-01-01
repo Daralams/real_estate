@@ -5,6 +5,13 @@ class MyTransientModel(models.TransientModel):
     _description = 'My Transient Model'
 
     name = fields.Char(string="Name", store=False)
+    type = fields.Selection([
+        ('a', 'A'),
+        ('b', 'B'),
+        ('c', 'C'),
+        ('d', 'D'),
+        ('e', 'E'),
+    ], string="Type")
     date = fields.Date(string="Date", readonly=True, default=fields.date.today())
 
     # @api.autovacumm
