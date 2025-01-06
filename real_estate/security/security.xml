@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_real_estate" model="ir.module.category">
+        <field name="name">Real Estate</field>
+    </record>
+    <record id="group_administor" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="real_estate.module_category_real_estate"/>
+    </record>
+    <record id="group_salesperson" model="res.groups">
+        <field name="name">Sales Person</field>
+        <field name="category_id" ref="real_estate.module_category_real_estate"/>
+    </record>
+</odoo>

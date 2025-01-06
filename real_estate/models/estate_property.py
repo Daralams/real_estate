@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from datetime import date, timedelta
 
@@ -48,12 +48,41 @@ class EstateProperty(models.Model):
         ('expected_price', 'CHECK(expected_price > 0)', 'Expected price should be strictly positive!'),
     ]
 
+     # action server 
+    def set_to_cancell(self):
+        for record in self:
+            if record.state not in "cancelled":
+                record.state = "cancelled"
+            else:
+                raise ValidationError("State must be not in cancelled.")
+
+    def set_as_new(self):
+        for record in self:
+            if record.state == "cancelled" and record.state not in "new":
+                record.state = "new"
+            else:
+                raise ValidationError("State must be in cancelled.")
+
     def get_estate_property_excel_report(self):
         # redirect ke controller route: /download/estate-property-report-excel/
         return {
             'type': 'ir.actions.act_url',
             'url': '/download/estate-property-report-excel/%s' % (self.id),
             'target': 'new'
+        }
+
+    def wizard_test(self):
+        """This function is called when the user clicks the
+        'Export Excel' button on a estate property's form view. It opens a
+        new wizard export excel."""
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Wizard Test'),
+            'res_model': 'estate.custom.wizard',
+            'target': 'new',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'context': {'default_user_id': self.id} # ini pentingkah?
         }
 
     def action_sold(self):
@@ -96,8 +125,9 @@ class EstateProperty(models.Model):
     def _total_area(self):
         self.total_area = self.living_area + self.garden_area
 
-
+    # override
     def unlink(self):
-        if self.state == 'sold' or self.state == 'cancelled':
-            raise ValidationError("Sold or Cancelled property cannot be delete!")
-            
+        for record in self:
+            if record.state == 'sold' or record.state == 'cancelled':
+                raise ValidationError("Sold or Cancelled property cannot be delete!")
+            return super(EstateProperty, self).unlink()

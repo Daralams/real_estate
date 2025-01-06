@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="estate_custom_wizard_view_form" model="ir.ui.view">
+        <field name="name">estate.custom.wizard.view.form</field>
+        <field name="model">estate.custom.wizard</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Wizard Test">
+                <sheet>
+                    <group>
+                        <field name="needs" />
+                    </group>
+                    <footer>
+                        <button name="testing" string="Send" type="object"/>
+                        <button name="cancel" string="Cancel" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

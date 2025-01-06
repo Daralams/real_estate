@@ -5,3 +5,5 @@ estate_property_tag_id,estate_property_tag_access,model_estate_property_tag,base
 estate_property_offer_id,estate_property_offer_access,model_estate_property_offer,base.group_user,1,1,1,1
 
 estate_labs_transient_id,estate_labs_transient_access,model_my_transient_model,base.group_user,1,1,1,1
+
+estate_custom_wizard_id,estate_custom_wizard_access,model_estate_custom_wizard,base.group_user,1,1,1,1

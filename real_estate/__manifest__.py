@@ -17,6 +17,7 @@ The Real Estate Advertisement module
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/estate_property_views.xml',
         'views/estate_property_type_views.xml',
         'views/estate_property_tag_views.xml',
@@ -29,6 +30,7 @@ The Real Estate Advertisement module
         'report/estate_property_reports.xml',
         'views/estate_property_web_template.xml',
         'views/estate_property_web_create_views.xml',
+        'wizard/estate_report_excel_wizard_views.xml',
         'views/estate_menu_views.xml',
         'views/templates.xml',
     ],

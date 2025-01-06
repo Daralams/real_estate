@@ -127,6 +127,7 @@
       <form string="Properties">
         <header>
           <button name="get_estate_property_excel_report" type="object" string="Print Excel" class="btn btn-primary"/>
+          <button name="wizard_test" type="object" string="Wizard Test" groups="real_estate.group_administor"/>
           <button name="action_sold" type="object" string="Sold" class="btn btn-primary" invisible="state == 'cancelled' or state == 'sold'"/>
           <button name="action_cancel" type="object" string="Cancel" invisible="state == 'sold' or state == 'cancelled'"/>
           <button type="action" name="%(estate_property_type_action)d" string="Type of property"/>
@@ -207,6 +208,25 @@
     <field name="context">{'search_default_available': 1}</field>
     <field name="help" type="html">
       <p class="o_view_nocontent_smiling_face">Manage properties here</p>
+    </field>
+  </record>
+  <!-- server action set to cancell -->
+  <record id="estate_property_action_cancell_server" model="ir.actions.server">
+    <field name="name">Cancel</field>
+    <field name="model_id" ref="model_estate_property"/>
+    <field name="binding_model_id" ref="model_estate_property"/>
+    <field name="state">code</field>
+    <field name="code">
+        action = records.set_to_cancell()
+    </field>
+  </record>
+  <record id="estate_property_action_set_as_new_server" model="ir.actions.server">
+    <field name="name">Set as New</field>
+    <field name="model_id" ref="model_estate_property"/>
+    <field name="binding_model_id" ref="model_estate_property"/>
+    <field name="state">code</field>
+    <field name="code">
+        action = records.set_as_new()
     </field>
   </record>
 </odoo>
